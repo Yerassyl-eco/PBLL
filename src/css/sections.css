@@ -1,0 +1,472 @@
+/* ================= Вход ================= */
+.hero {
+  position: relative; overflow: hidden;
+  background: var(--steppe); color: var(--on-dark);
+  min-height: clamp(38rem, 94svh, 60rem);
+  display: grid; grid-template-rows: 1fr auto;
+  padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  isolation: isolate;
+}
+.hero::after { /* лёгкое затемнение к низу, чтобы подпись читалась поверх карты */
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(24, 36, 29, 0) 45%, rgba(24, 36, 29, .85) 100%);
+}
+.hero__map {
+  position: absolute; z-index: -2;
+  top: calc(var(--header-h) + 1rem); right: -2%;
+  width: min(78%, 74rem);
+  -webkit-mask-image: radial-gradient(ellipse 60% 62% at 55% 50%, #000 55%, transparent 100%);
+  mask-image: radial-gradient(ellipse 60% 62% at 55% 50%, #000 55%, transparent 100%);
+}
+.map { width: 100%; height: auto; overflow: visible; }
+.map__grat { fill: none; stroke: rgba(232, 225, 207, .1); stroke-width: .8; }
+.map__land { fill: rgba(232, 225, 207, .035); stroke: none; }
+.map__borders { fill: none; stroke: rgba(232, 225, 207, .22); stroke-width: .8; stroke-dasharray: 3 3; }
+.map__kz { fill: rgba(176, 145, 90, .09); stroke: var(--gold); stroke-width: 1.4; stroke-linejoin: round; }
+.map__deg { font-family: var(--f-mono); font-size: 12px; fill: rgba(232, 225, 207, .45); }
+.map__pin circle { fill: var(--on-dark); }
+.map__pin text { font-family: var(--f-mono); font-size: 13px; fill: var(--on-dark-soft); }
+.map__pin--find circle { fill: var(--rust-hi); }
+.map__pin--find .map__halo { fill: none; stroke: var(--rust-hi); stroke-width: 1; opacity: .8; }
+.map__pin--find text { fill: var(--on-dark); font-size: 14px; }
+
+.hero__in { align-self: end; padding-top: clamp(5rem, 16vh, 12rem); }
+.hero__kicker {
+  font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem;
+}
+.hero__title {
+  font-family: var(--f-display); font-weight: 400; text-transform: uppercase;
+  font-size: clamp(2.5rem, 7.2vw, 7.75rem); line-height: .92; letter-spacing: .005em;
+  display: grid; gap: .04em;
+}
+.hero__l2 {
+  font-style: italic; text-transform: none; font-size: .56em; letter-spacing: 0;
+  padding-left: 1.6em; color: var(--gold); line-height: 1.1;
+}
+.hero__sub { margin-top: 1.75rem; font-size: var(--t-md); color: var(--on-dark); max-width: 26em; }
+
+.eras { margin-top: 2.5rem; }
+.eras ol { display: flex; flex-wrap: wrap; gap: 0; border-top: 1px solid var(--rule-dark); max-width: 60rem; }
+.eras li { flex: 1 1 11rem; min-width: 0; }
+.eras li + li { border-left: 1px solid var(--rule-dark); }
+.eras a {
+  display: grid; gap: .2rem; padding: .9rem 1rem .9rem 0; text-decoration: none;
+  transition: color .2s;
+}
+.eras li + li a { padding-left: 1rem; }
+.eras__t { font-size: var(--t-sm); font-weight: 500; }
+.eras__d { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--on-dark-soft); }
+.eras a:hover .eras__t { color: var(--gold); }
+.eras li + li .eras__t::before { content: "→ "; color: var(--gold); }
+
+.hero__foot {
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) auto; gap: 2rem; align-items: end;
+  padding-block: 1.75rem; border-top: 1px solid var(--rule-dark); margin-top: 2rem;
+}
+.hero__footwrap { width: 100%; }
+.hero__q { font-family: var(--f-display); font-style: italic; font-size: var(--t-md); line-height: 1.35; max-width: 30em; }
+.hero__cap { font-size: var(--t-xs); color: var(--on-dark-soft); font-family: var(--f-mono); line-height: 1.55; max-width: 34em; }
+.hero__down {
+  font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase;
+  text-decoration: none; display: inline-flex; gap: .6rem; align-items: center; white-space: nowrap;
+  padding: .7rem 0; border-bottom: 1px solid var(--gold);
+}
+
+@media (max-width: 900px) {
+  .hero__map { top: calc(var(--header-h) + 1.5rem); right: -18%; width: 125%; opacity: .9; }
+  .hero__foot { grid-template-columns: 1fr; gap: 1.25rem; }
+  .hero__in { padding-top: min(52vw, 18rem); }
+}
+@media (max-width: 560px) {
+  .eras li { flex-basis: 50%; }
+  .eras li:nth-child(3) { border-left: 0; }
+  .eras li:nth-child(3) a { padding-left: 0; }
+  .eras li:nth-child(n+3) { border-top: 1px solid var(--rule-dark); }
+  .eras li:nth-child(3) .eras__t::before { content: ""; }
+  .map__pin--find text { display: none; }
+  .hero__map { opacity: .6; }
+}
+
+/* ================= Зал I: Древняя степь ================= */
+.steppe__grid {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter); row-gap: clamp(2.5rem, 5vw, 4.5rem);
+}
+.steppe__head { grid-column: 1 / 8; }
+.steppe__date { grid-column: 9 / 13; align-self: end; }
+.steppe__text { grid-column: 1 / 6; }
+.steppe__text > p:not(.src):not(.lead) { max-width: var(--measure); }
+.steppe__text .lead { margin-bottom: .2rem; }
+.steppe__section { grid-column: 6 / 13; align-self: start; }
+.steppe__where { grid-column: 1 / 5; grid-row: 3; align-self: start; padding-top: 3.5rem; }
+.steppe__inv { grid-column: 6 / 13; grid-row: 3; }
+
+.bigdate { font-family: var(--f-display); font-size: var(--t-2xl); line-height: 1; margin-bottom: .75rem; }
+.bigdate span { display: block; font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase; margin-top: .6rem; color: var(--gold-ink); }
+
+.burial { width: 100%; height: auto; }
+.burial text { font-family: var(--f-mono); font-size: 12px; fill: var(--ink-soft); }
+.burial .burial__note { font-family: var(--f-display); font-style: italic; font-size: 14px; }
+.burial__hatch { stroke: rgba(23, 20, 15, .16); stroke-width: 1; }
+.burial__soil { stroke: none; }
+.burial__mound { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-dasharray: 5 5; }
+.burial__ground { stroke: var(--ink); stroke-width: 1.6; }
+.burial__pit { fill: var(--paper); stroke: none; }
+.burial__slabs rect { fill: var(--sand); stroke: var(--ink); stroke-width: 1; }
+.burial__box { fill: var(--paper-hi); stroke: var(--ink); stroke-width: 1.2; }
+.burial__marks g { cursor: pointer; }
+.burial__marks circle { fill: var(--paper-hi); stroke: var(--ink); stroke-width: 1; transition: fill .2s; }
+.burial__marks text { text-anchor: middle; fill: var(--ink); font-size: 11px; }
+.burial__marks g.is-on circle { fill: var(--rust); stroke: var(--rust); }
+.burial__marks g.is-on text { fill: var(--paper-hi); }
+.burial__dim line { stroke: var(--gold-ink); stroke-width: 1; }
+.burial__dim .burial__lead { stroke-dasharray: 2 3; }
+.burial__dim text { fill: var(--gold-ink); font-size: 14px; }
+.burial__scale line { stroke: var(--ink); stroke-width: 1.2; }
+@media (max-width: 560px) {
+  .burial text { font-size: 20px; }
+  .burial .burial__note { font-size: 22px; }
+  .burial__dim text { font-size: 22px; }
+  .burial__marks text { font-size: 13px; }
+}
+
+.inv { margin-top: 1.25rem; border-top: 1px solid var(--ink); }
+.inv li {
+  display: grid; grid-template-columns: 2.5rem 1fr; gap: .75rem; align-items: baseline;
+  padding: .8rem 0; border-bottom: 1px solid var(--rule); transition: background-color .2s;
+}
+.inv__n { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--gold-ink); }
+.inv li.is-on { background: rgba(155, 74, 47, .08); }
+.inv li.is-on .inv__n { color: var(--rust); }
+.steppe__inv .src { margin-top: 1rem; }
+
+.steppe__where .map--inset { max-width: 20rem; }
+.map--inset .map__land { fill: rgba(23, 20, 15, .05); }
+.map--inset .map__kz { fill: var(--sand); stroke: var(--ink); stroke-width: 2; }
+.map--inset .map__pin--find circle { fill: var(--rust); }
+.map--inset .map__halo { stroke: var(--rust); fill: none; stroke-width: 3; }
+.steppe__where figcaption { margin-top: .75rem; font-size: var(--t-sm); color: var(--ink-soft); }
+
+@media (max-width: 1000px) {
+  .steppe__head, .steppe__date, .steppe__text, .steppe__section, .steppe__inv, .steppe__where { grid-column: 1 / -1; }
+  .steppe__date { align-self: start; }
+  .steppe__where { max-width: 18rem; grid-row: auto; padding-top: 0; }
+  .steppe__inv { grid-row: auto; }
+}
+
+/* ================= Зал I: Метод ================= */
+.evidence__head { max-width: 50rem; margin-bottom: clamp(3rem, 6vw, 5rem); }
+.evidence__head .lead { margin-top: 1.5rem; color: var(--on-dark); }
+.ledger__cols, .ledger__row {
+  display: grid; grid-template-columns: minmax(0, 1fr) 4rem minmax(0, 1fr); column-gap: var(--gutter);
+}
+.ledger__cols {
+  font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); padding-bottom: 1rem;
+}
+.ledger__row { border-top: 1px solid var(--rule-dark); padding-block: 2rem 2.25rem; }
+.ledger__row:last-child { border-bottom: 1px solid var(--rule-dark); }
+.ledger__tag { display: none; }
+.ledger__known > p:not(.src) { max-width: 34em; }
+.ledger__sign {
+  font-family: var(--f-display); font-size: var(--t-xl); color: var(--rust-hi); line-height: 1; text-align: center;
+}
+.ledger__limit > p { font-family: var(--f-display); font-size: var(--t-md); line-height: 1.4; max-width: 28em; }
+.evidence__coda {
+  margin-top: clamp(3rem, 6vw, 5rem); margin-left: auto; max-width: 28em;
+  font-family: var(--f-display); font-style: italic; font-size: var(--t-lg); line-height: 1.3; color: var(--gold);
+}
+@media (max-width: 800px) {
+  .ledger__cols { display: none; }
+  .ledger__row { grid-template-columns: 1fr; row-gap: 1rem; }
+  .ledger__tag { display: block; font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; }
+  .ledger__sign { text-align: left; font-size: var(--t-lg); }
+  .evidence__coda { margin-left: 0; }
+}
+
+/* ================= Зал II: Традиция ================= */
+.tradition__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 3rem; }
+.tradition__head { grid-column: 1 / 6; align-self: start; position: sticky; top: calc(var(--header-h) + 2rem); }
+.tradition__head .lead { margin-top: 1.5rem; }
+.terms { grid-column: 7 / 13; border-top: 1px solid var(--ink); }
+.term { display: grid; grid-template-columns: minmax(0, 11rem) minmax(0, 1fr); gap: 1.5rem; padding-block: 1.75rem; border-bottom: 1px solid var(--rule); }
+.term dt { font-family: var(--f-display); font-size: var(--t-lg); line-height: 1.15; }
+.term--limit dt { color: var(--rust); }
+.term dd { margin: 0; }
+.dispute { margin-top: 2.5rem; padding: 1.5rem; border: 1px solid var(--ink); background: var(--paper); font-size: var(--t-sm); }
+.dispute__t { font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--rust); margin-bottom: .75rem; }
+@media (max-width: 1000px) {
+  .tradition__head { grid-column: 1 / -1; position: static; }
+  .terms { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) { .term { grid-template-columns: 1fr; gap: .6rem; } }
+
+/* ================= Зал II: Стереотипы ================= */
+.myths__head { max-width: 48rem; margin-bottom: 3rem; }
+.myths__head .lead { margin-top: 1.5rem; }
+.myths__tabs { display: flex; flex-wrap: wrap; gap: .25rem 2rem; border-bottom: 1px solid var(--rule-dark); margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.myths__tabs button {
+  background: none; border: 0; padding: .9rem 0; cursor: pointer; color: var(--on-dark-soft);
+  font-family: var(--f-display); font-size: var(--t-md); border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.myths__tabs button:hover { color: var(--on-dark); }
+.myths__tabs button[aria-selected="true"] { color: var(--on-dark); border-bottom-color: var(--rust-hi); }
+
+.myth { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); }
+.myth + .myth { margin-top: 6rem; }
+.js-tabs .myth + .myth { margin-top: 0; }
+.myth__stage {
+  grid-column: 1 / 8; align-self: start; position: sticky; top: calc(var(--header-h) + 3rem);
+  padding-bottom: 2rem;
+}
+.myth__label { font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+.myth__phrase {
+  font-family: var(--f-display); font-size: clamp(2rem, 1.2rem + 3.2vw, 4.25rem); line-height: 1.08;
+  text-wrap: balance; transition: color .5s var(--ease);
+}
+.myth__key {
+  text-decoration: none; color: inherit;
+  background-image: linear-gradient(var(--rust-hi), var(--rust-hi));
+  background-repeat: no-repeat; background-position: 0 58%; background-size: 0% .09em;
+  transition: background-size .8s var(--ease), color .5s var(--ease);
+}
+.myth__fix {
+  margin-top: 1.5rem; font-family: var(--f-display); font-style: italic; font-size: var(--t-lg); color: var(--gold);
+  opacity: 0; transform: translateY(8px); transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+.myth__meter { display: flex; gap: .5rem; margin-top: 2.5rem; font-family: var(--f-mono); font-size: .6875rem; letter-spacing: .08em; text-transform: uppercase; color: var(--on-dark-soft); }
+.myth__meter li { flex: 1; padding-top: .6rem; border-top: 2px solid var(--rule-dark); transition: border-color .3s, color .3s; }
+
+.myth[data-stage="1"] .myth__meter li:nth-child(1),
+.myth[data-stage="2"] .myth__meter li:nth-child(-n+2),
+.myth[data-stage="3"] .myth__meter li:nth-child(-n+3),
+.myth[data-stage="4"] .myth__meter li { border-color: var(--gold); color: var(--on-dark); }
+.myth[data-stage="2"] .myth__key, .myth[data-stage="3"] .myth__key, .myth[data-stage="4"] .myth__key { background-size: 100% .09em; color: var(--on-dark-soft); }
+.myth[data-stage="3"] .myth__fix, .myth[data-stage="4"] .myth__fix { opacity: 1; transform: none; }
+.myth[data-stage="4"] .myth__phrase { color: var(--on-dark-soft); }
+
+.myth__steps { grid-column: 8 / 13; }
+.step { padding-block: 2rem; border-top: 1px solid var(--rule-dark); min-height: 52vh; transition: opacity .4s; }
+.step:last-child { min-height: 0; }
+.js-steps .step:not(.is-active) { opacity: .5; }
+.step__n { font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+.step__n span { color: var(--on-dark-soft); margin-right: .6em; }
+.step__list { display: grid; gap: .6rem; margin-bottom: .2rem; }
+.step__list li { padding-left: 1.2rem; position: relative; }
+.step__list li::before { content: "—"; position: absolute; left: 0; color: var(--gold); }
+.step__claim { font-family: var(--f-display); font-size: var(--t-lg); line-height: 1.3; }
+
+@media (max-width: 1000px) {
+  .myth__stage { grid-column: 1 / -1; position: static; }
+  .myth__steps { grid-column: 1 / -1; }
+  .step { min-height: 0; }
+  .js-steps .step:not(.is-active) { opacity: 1; }
+  .myth__fix { opacity: 1; transform: none; }
+  .myth .myth__key { background-size: 100% .09em; color: var(--on-dark-soft); }
+}
+
+/* ================= Зал III: XX век ================= */
+.century { padding-block: 0; overflow-x: clip; }
+.century__pin { padding-block: var(--room-pad) 3rem; display: flex; flex-direction: column; }
+.century__head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 22rem); gap: 2rem; align-items: end; }
+.century__hint { font-size: var(--t-sm); color: var(--ink-soft); }
+.century__hint-desk { display: none; }
+.century.is-pinned .century__hint-desk { display: inline; }
+.century.is-pinned .century__hint-mob { display: none; }
+
+.century__ruler { margin-block: 2.5rem 1.5rem; }
+.ruler { position: relative; height: 2.2rem; border-bottom: 1px solid var(--ink); }
+.ruler__tick {
+  position: absolute; bottom: 0; left: calc(var(--x) * 100%); transform: translateX(-50%);
+  font-family: var(--f-mono); font-size: .6875rem; color: var(--ink-soft); padding-bottom: .9rem;
+}
+.ruler__tick::after { content: ""; position: absolute; left: 50%; bottom: 0; height: .5rem; border-left: 1px solid var(--ink); }
+.ruler__tick:last-of-type { transform: translateX(-100%); }
+.ruler__tick:last-of-type::after { left: 100%; }
+.ruler__stop { position: absolute; bottom: -4px; left: calc(var(--x) * 100%); width: 7px; height: 7px; margin-left: -3.5px; border-radius: 50%; background: var(--ink); }
+.ruler__now {
+  position: absolute; bottom: -.6rem; top: 0; left: calc(var(--now, .0824) * 100%); width: 2px; margin-left: -1px; background: var(--rust);
+  transition: left .15s linear;
+}
+
+.century__viewport { overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.century__viewport:focus-visible { outline-offset: -2px; }
+.century__track {
+  display: flex; width: max-content;
+  padding-inline: max(var(--gutter), calc((100vw - var(--max)) / 2 + var(--gutter)));
+}
+.stop {
+  width: clamp(17rem, 78vw, 24rem); flex: none; scroll-snap-align: start;
+  padding: 0 1.75rem 1rem; border-left: 1px solid var(--rule);
+  font-size: .9375rem; line-height: 1.55;
+}
+.stop:first-child { border-left: 1px solid var(--ink); }
+.stop > p:not(.src):not(.stop__year):not(.stop__theme) { max-width: 30em; }
+.stop__year { font-family: var(--f-display); font-size: var(--t-xl); line-height: 1; }
+.stop__theme { font-family: var(--f-mono); font-size: .6875rem; letter-spacing: .12em; text-transform: uppercase; color: var(--gold-ink); margin: .75rem 0 1rem; }
+.stop__gap { font-size: var(--t-sm); color: var(--ink-soft); font-style: italic; }
+.stop__next { display: inline-block; margin-top: .5rem; font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--rust); padding-bottom: .2rem; }
+
+.century.is-pinned .century__pin {
+  position: sticky; top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
+  height: calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px)); padding-block: 2.5rem 1.5rem; overflow: hidden;
+}
+.century.is-pinned .century__viewport { overflow: hidden; scroll-snap-type: none; flex: 1; }
+.century.is-pinned .century__track { will-change: transform; transform: translate3d(var(--tx, 0px), 0, 0); }
+@media (max-width: 700px) { .century__head { grid-template-columns: 1fr; } }
+
+/* ================= Зал IV: Независимость ================= */
+.indep__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 3rem; }
+.indep__head { grid-column: 1 / 6; align-self: start; position: sticky; top: calc(var(--header-h) + 2rem); }
+.indep__year {
+  font-family: var(--f-display); font-size: clamp(5.5rem, 3rem + 11vw, 13rem); line-height: .8; letter-spacing: -.03em;
+  margin-bottom: 2rem; font-variant-numeric: lining-nums;
+}
+.indep__head .lead { margin-top: 1.25rem; }
+.acts { grid-column: 7 / 13; border-top: 1px solid var(--ink); }
+.act { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1.75rem; border-bottom: 1px solid var(--rule); }
+.act__date { font-family: var(--f-mono); font-size: var(--t-sm); padding-top: .2rem; font-variant-numeric: tabular-nums; }
+.act__name { font-family: var(--f-display); font-size: var(--t-md); line-height: 1.3; margin-bottom: .5rem; }
+.act--doc .act__date { color: var(--rust); }
+.doc {
+  background: var(--paper); border: 1px solid var(--rule); padding: clamp(1.5rem, 4vw, 2.75rem);
+  text-align: center; margin-bottom: .8rem;
+  box-shadow: inset 0 0 0 5px var(--paper), inset 0 0 0 6px var(--rule);
+}
+.doc__kind { font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .16em; text-transform: uppercase; }
+.doc__title { font-family: var(--f-display); font-size: var(--t-lg); line-height: 1.2; margin: 1rem auto; max-width: 20em; text-wrap: balance; }
+.doc__no { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--ink-soft); }
+.doc__text { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); text-align: left; font-size: var(--t-sm); }
+@media (max-width: 1000px) {
+  .indep__head { grid-column: 1 / -1; position: static; }
+  .acts { grid-column: 1 / -1; }
+}
+@media (max-width: 520px) { .act { grid-template-columns: 1fr; gap: .4rem; } }
+
+/* ================= Зал V: Сегодня ================= */
+.today { padding-bottom: calc(var(--room-pad) * .5); }
+.today__head { max-width: 46rem; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.today__head .lead { margin-top: 1.25rem; }
+.figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--gutter); border-top: 1px solid var(--ink); }
+.fig { padding-block: 2rem; display: grid; gap: 1rem; align-content: start; }
+.fig + .fig:not(.fig--xl) { border-left: 1px solid var(--rule); padding-left: var(--gutter); }
+.fig--xl { grid-column: 1 / -1; grid-template-columns: minmax(0, auto) minmax(0, 22rem); align-items: end; column-gap: 3rem; border-bottom: 1px solid var(--rule); }
+.figs .fig--xl + .fig:not(.fig--xl) { border-left: 0; padding-left: 0; }
+.fig__n { font-family: var(--f-display); font-size: var(--t-2xl); line-height: .9; letter-spacing: -.02em; font-variant-numeric: tabular-nums lining-nums; white-space: nowrap; }
+.fig--xl .fig__n { font-size: clamp(2.9rem, 1rem + 8.2vw, 9rem); }
+.fig__n small { font-size: .5em; margin-left: .08em; }
+.fig__what { font-size: var(--t-md); line-height: 1.35; }
+.fig__when { font-family: var(--f-mono); font-size: var(--t-xs); color: var(--ink-soft); margin-top: .35rem; }
+.fig figcaption .src { margin-top: .75rem; }
+@media (max-width: 800px) {
+  .figs { grid-template-columns: 1fr; }
+  .fig--xl { grid-template-columns: 1fr; }
+  .fig + .fig:not(.fig--xl) { border-left: 0; padding-left: 0; border-top: 1px solid var(--rule); }
+}
+
+/* ================= Зал V: Зарплата ================= */
+.wages { padding-block: calc(var(--room-pad) * .5); }
+.wages__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 2.5rem; }
+.wages__grid::before, .politics__grid::before { content: ""; grid-column: 1 / -1; border-top: 1px solid var(--ink); margin-bottom: -.5rem; }
+.wages__head { grid-column: 1 / 9; }
+.chart--wages { grid-column: 1 / 9; }
+.wages__read { grid-column: 9 / 13; align-self: start; }
+.wages__lede { font-family: var(--f-display); font-size: var(--t-lg); line-height: 1.2; margin-bottom: 1rem; }
+.factors { margin: 1rem 0 1.25rem; border-top: 1px solid var(--rule); }
+.factors li { padding: .5rem 0; border-bottom: 1px solid var(--rule); font-size: var(--t-sm); }
+@media (max-width: 1000px) {
+  .wages__head, .chart--wages, .wages__read { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .bars { --label-w: 0rem; --val-w: 0rem; }
+  .bars__row { grid-template-columns: minmax(0, 1fr) auto; row-gap: .35rem; }
+  .bars__track { grid-column: 1 / -1; grid-row: 2; }
+  .bars__val { padding-left: 0; }
+  .bars__axis span:nth-child(even) { visibility: hidden; }
+  .bars__axis span:last-child { transform: translateX(-100%); padding-left: 0; padding-right: .3rem; border-left: 0; }
+}
+
+/* ================= Зал V: Представительство ================= */
+.politics { padding-top: calc(var(--room-pad) * .5); }
+.politics__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 2.5rem; }
+.politics__head { grid-column: 1 / 5; }
+.politics__head .muted { margin-top: 1rem; }
+.chart--share { grid-column: 5 / 13; grid-row: 2 / 4; }
+.politics__note { grid-column: 1 / 5; align-self: start; font-size: var(--t-sm); }
+.politics__note .h4 { margin-bottom: .75rem; }
+.share { border-top: 1px solid var(--rule); }
+.share__row {
+  display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 6.5rem; column-gap: 1.5rem; align-items: center;
+  padding-block: 1.25rem .9rem; border-bottom: 1px solid var(--rule);
+}
+.share__name { font-size: var(--t-sm); font-weight: 500; }
+.share__when { font-family: var(--f-mono); font-size: .6875rem; color: var(--ink-soft); margin-top: .2rem; }
+.share__track { position: relative; height: 1.1rem; background: linear-gradient(var(--rule), var(--rule)) 0 50% / 100% 1px no-repeat; }
+.share__bar { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--v) * 1%); background: var(--b); border-radius: 0 4px 4px 0; transform-origin: 0 50%; }
+.share__half { position: absolute; left: 50%; top: -.45rem; bottom: -.45rem; border-left: 1px dashed var(--ink); }
+.share__val { font-family: var(--f-display); font-size: var(--t-lg); text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.share__src { grid-column: 1 / -1; }
+.share__src .src { margin: .6rem 0 0; }
+.share__row:hover .share__bar { filter: brightness(1.08); }
+@media (max-width: 1000px) {
+  .politics__head, .chart--share, .politics__note { grid-column: 1 / -1; grid-row: auto; }
+}
+@media (max-width: 600px) {
+  .share__row { grid-template-columns: minmax(0, 1fr) auto; row-gap: .7rem; }
+  .share__meta { grid-column: 1 / 2; }
+  .share__val { grid-column: 2; grid-row: 1; }
+  .share__track { grid-column: 1 / -1; }
+}
+
+/* ================= Итог ================= */
+.coda__quote p {
+  font-family: var(--f-display); font-size: clamp(1.75rem, 1rem + 2.8vw, 3.5rem); line-height: 1.15; max-width: 22em; text-wrap: balance;
+}
+.coda__qs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gutter); margin-top: clamp(3rem, 7vw, 6rem); }
+.coda__q { border-top: 1px solid var(--rule-dark); padding-top: 1.5rem; display: grid; gap: 1rem; align-content: start; }
+.coda__q h3 { font-size: var(--t-lg); color: var(--gold); }
+.coda__q p { color: var(--on-dark); font-size: var(--t-sm); max-width: 28em; }
+.coda__q a { font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--on-dark-soft); }
+.coda__q a:hover { color: var(--on-dark); }
+@media (max-width: 800px) { .coda__qs { grid-template-columns: 1fr; } }
+
+/* ================= Архив ================= */
+.archive__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: var(--gutter); row-gap: 2.5rem; }
+.archive__head { grid-column: 1 / 5; align-self: start; position: sticky; top: calc(var(--header-h) + 2rem); display: grid; gap: 1rem; }
+.archive__head .h2 { margin-bottom: .5rem; }
+.archive__body { grid-column: 5 / 13; min-width: 0; }
+.archive__filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2.5rem; }
+.archive__group + .archive__group { margin-top: 3rem; }
+.archive__h { font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .14em; text-transform: uppercase; color: var(--gold-ink); padding-bottom: .75rem; border-bottom: 1px solid var(--ink); font-weight: 400; }
+.entry { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 2rem; row-gap: .75rem; padding-block: 1.25rem; border-bottom: 1px solid var(--rule); scroll-margin-top: calc(var(--header-h) + 1rem); }
+.entry__title { font-family: var(--f-display); font-size: var(--t-md); line-height: 1.3; grid-column: 1; }
+.entry__meta { grid-column: 1; display: flex; flex-wrap: wrap; gap: .4rem 1.75rem; margin: 0; font-size: var(--t-sm); }
+.entry__meta div { display: grid; }
+.entry__meta dt { font-family: var(--f-mono); font-size: .6875rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.entry__meta dd { margin: 0; }
+.entry__open {
+  grid-column: 2; grid-row: 1 / 3; align-self: center; white-space: nowrap;
+  font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .06em; text-transform: uppercase;
+  text-decoration: none; padding: .6rem .9rem; border: 1px solid var(--ink); border-radius: 2px;
+  transition: background-color .2s, color .2s;
+}
+.entry__open:hover { background: var(--ink); color: var(--paper); }
+.entry:target { background: rgba(176, 145, 90, .14); }
+@media (max-width: 1000px) {
+  .archive__head { grid-column: 1 / -1; position: static; }
+  .archive__body { grid-column: 1 / -1; }
+}
+@media (max-width: 600px) {
+  .entry { grid-template-columns: 1fr; }
+  .entry__open { grid-column: 1; grid-row: auto; justify-self: start; }
+}
+
+/* ================= Подвал ================= */
+.foot { background: var(--ink); color: var(--on-dark-soft); padding-block: 3rem calc(3rem + env(safe-area-inset-bottom, 0px)); }
+.foot__grid { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 2rem; align-items: baseline; }
+.foot__brand { font-family: var(--f-display); font-size: var(--t-md); color: var(--on-dark); }
+.foot__meta { font-size: var(--t-xs); font-family: var(--f-mono); max-width: 48em; }
+.foot__top { font-family: var(--f-mono); font-size: var(--t-xs); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; color: var(--on-dark); }
+@media (max-width: 800px) { .foot__grid { grid-template-columns: 1fr; gap: 1rem; } }
+.century__title { font-size: var(--t-xl); line-height: 1.1; }

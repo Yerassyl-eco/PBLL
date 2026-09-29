@@ -1,0 +1,283 @@
+{
+  "checked": "29.09.2026",
+  "categories": [
+    { "id": "arch", "label": "Археология" },
+    { "id": "hist", "label": "История" },
+    { "id": "law", "label": "Законодательство" },
+    { "id": "stat", "label": "Официальная статистика" },
+    { "id": "intl", "label": "Международные данные" },
+    { "id": "media", "label": "СМИ и аналитика" }
+  ],
+  "sources": [
+    {
+      "id": "ehistory-urdzhar",
+      "cat": "arch",
+      "short": "e-history.kz",
+      "title": "The “Princess” of Urdzhar",
+      "org": "Портал «История Казахстана» (e-history.kz)",
+      "year": null,
+      "type": "Научно-популярная публикация",
+      "url": "https://e-history.kz/en/e-resources/show/13163"
+    },
+    {
+      "id": "astanatimes-2013",
+      "cat": "arch",
+      "short": "The Astana Times, 2013",
+      "title": "Archaeologists Discover Ancient Princess’ Burial Site",
+      "org": "The Astana Times",
+      "year": "2013",
+      "type": "Новостная публикация",
+      "url": "https://astanatimes.com/2013/06/archaeologists-discover-ancient-princess-burial-site/"
+    },
+    {
+      "id": "astanatimes-2025",
+      "cat": "arch",
+      "short": "The Astana Times, 2025",
+      "title": "Ancient Burials in Kazakhstan Reveal High Status of Women in Nomad Culture",
+      "org": "The Astana Times",
+      "year": "2025",
+      "type": "Обзорная статья",
+      "url": "https://astanatimes.com/2025/03/ancient-burials-in-kazakhstan-reveal-high-status-of-women-in-nomad-culture/"
+    },
+    {
+      "id": "kazpravda-urdzhar",
+      "cat": "arch",
+      "short": "«Казахстанская правда»",
+      "title": "Сокровища Урджарской жрицы",
+      "org": "«Казахстанская правда»",
+      "year": null,
+      "type": "Газетная статья",
+      "url": "https://kazpravda.kz/n/sokrovishcha-urdzharskoy-zhritsy/"
+    },
+    {
+      "id": "ehistory-status",
+      "cat": "hist",
+      "short": "e-history.kz",
+      "title": "Социальное положение казахской женщины",
+      "org": "Портал «История Казахстана» (e-history.kz)",
+      "year": null,
+      "type": "Научно-популярная публикация",
+      "url": "https://e-history.kz/ru/news/show/4191"
+    },
+    {
+      "id": "inform-zheti",
+      "cat": "hist",
+      "short": "Kazinform",
+      "title": "Права женщин впервые были описаны в «Жеті жарғы»",
+      "org": "МИА «Казинформ»",
+      "year": null,
+      "type": "Статья информагентства",
+      "url": "https://www.inform.kz/ru/prava-zhenshin-vpervie-bili-opisani-vzheti-zhargi-af89a3"
+    },
+    {
+      "id": "zonakz-1917",
+      "cat": "hist",
+      "short": "ZONAkz, 2017",
+      "title": "Казахстан в 1917 году. Эпоха больших перемен",
+      "org": "ZONAkz",
+      "year": "2017",
+      "type": "Историческая статья",
+      "url": "https://zonakz.net/2017/03/06/kazakhstan-v-1917-godu-ehpokha-bolshikh-peremen/"
+    },
+    {
+      "id": "wikisource-1920",
+      "cat": "hist",
+      "short": "Викитека",
+      "title": "Декрет ЦИК и СНК Киргизской (Казахской) АССР от 28 декабря 1920 года",
+      "org": "Викитека (публикация текста документа)",
+      "year": "1920",
+      "type": "Исторический документ",
+      "url": "https://ru.wikisource.org/wiki/%D0%94%D0%B5%D0%BA%D1%80%D0%B5%D1%82_%D0%A6%D0%98%D0%9A_%D0%B8_%D0%A1%D0%9D%D0%9A_%D0%9A%D0%B8%D1%80%D0%B3%D0%B8%D0%B7%D1%81%D0%BA%D0%BE%D0%B9_(%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D0%BA%D0%BE%D0%B9)_%D0%90%D0%A1%D0%A1%D0%A0_%D0%BE%D1%82_28_%D0%B4%D0%B5%D0%BA%D0%B0%D0%B1%D1%80%D1%8F_1920_%D0%B3%D0%BE%D0%B4%D0%B0"
+    },
+    {
+      "id": "ehistory-literacy",
+      "cat": "hist",
+      "short": "e-history.kz",
+      "title": "Преодоление массовой неграмотности населения и развитие народного образования",
+      "org": "Портал «История Казахстана» (e-history.kz)",
+      "year": null,
+      "type": "Учебно-научный материал",
+      "url": "https://e-history.kz/ru/contents/view/330"
+    },
+    {
+      "id": "ehistory-asharshylyk",
+      "cat": "hist",
+      "short": "e-history.kz",
+      "title": "Как считали жертв Ашаршылыка 1930–1933 гг.",
+      "org": "Портал «История Казахстана» (e-history.kz)",
+      "year": null,
+      "type": "Историографический обзор",
+      "url": "https://e-history.kz/ru/news/show/50001280"
+    },
+    {
+      "id": "ehistory-pavlodar",
+      "cat": "hist",
+      "short": "e-history.kz",
+      "title": "Павлодарские женщины в Великой Отечественной войне",
+      "org": "Портал «История Казахстана» (e-history.kz)",
+      "year": null,
+      "type": "Региональное исследование",
+      "url": "https://e-history.kz/ru/history-of-kazakhstan/show/9269"
+    },
+    {
+      "id": "ehistory-mametova",
+      "cat": "hist",
+      "short": "e-history.kz",
+      "title": "Маншук Маметова",
+      "org": "Портал «История Казахстана» (e-history.kz)",
+      "year": null,
+      "type": "Биографическая справка",
+      "url": "https://e-history.kz/ru/prominent-figures/show/12632"
+    },
+    {
+      "id": "ehistory-moldagulova",
+      "cat": "hist",
+      "short": "e-history.kz",
+      "title": "Алия Молдагулова",
+      "org": "Портал «История Казахстана» (e-history.kz)",
+      "year": null,
+      "type": "Биографическая справка",
+      "url": "https://e-history.kz/ru/prominent-figures/show/12669"
+    },
+    {
+      "id": "ehistory-demography",
+      "cat": "hist",
+      "short": "e-history.kz",
+      "title": "Демографическая ситуация в Республике в 1959–1989 гг.",
+      "org": "Портал «История Казахстана» (e-history.kz)",
+      "year": null,
+      "type": "Учебно-научный материал",
+      "url": "https://e-history.kz/ru/history-of-kazakhstan/show/9310"
+    },
+    {
+      "id": "adilet-independence",
+      "cat": "law",
+      "short": "ИПС «Әділет»",
+      "title": "Конституционный закон РК от 16 декабря 1991 г. № 1007-XII «О государственной независимости Республики Казахстан»",
+      "org": "ИПС «Әділет», Министерство юстиции РК",
+      "year": "1991",
+      "type": "Нормативный правовой акт",
+      "url": "https://adilet.zan.kz/rus/docs/Z910004400_"
+    },
+    {
+      "id": "adilet-constitution-1995",
+      "cat": "law",
+      "short": "ИПС «Әділет»",
+      "title": "Конституция Республики Казахстан 1995 года",
+      "org": "ИПС «Әділет», Министерство юстиции РК",
+      "year": "1995",
+      "type": "Нормативный правовой акт",
+      "url": "https://adilet.zan.kz/rus/docs/K950001000_"
+    },
+    {
+      "id": "adilet-2009",
+      "cat": "law",
+      "short": "ИПС «Әділет»",
+      "title": "Закон РК от 8 декабря 2009 г. № 223-IV «О государственных гарантиях равных прав и равных возможностей мужчин и женщин»",
+      "org": "ИПС «Әділет», Министерство юстиции РК",
+      "year": "2009",
+      "type": "Нормативный правовой акт",
+      "url": "https://adilet.zan.kz/rus/docs/Z090000223_"
+    },
+    {
+      "id": "inform-constitution-2026",
+      "cat": "law",
+      "short": "Kazinform, 2026",
+      "title": "Вступила в силу новая Конституция: что важно знать казахстанцам",
+      "org": "МИА «Казинформ»",
+      "year": "2026",
+      "type": "Статья информагентства",
+      "url": "https://www.inform.kz/ru/vstupila-v-silu-novaya-konstitutsiya-chto-vazhno-znat-kazahstantsunovaya-konstit-e29eee95"
+    },
+    {
+      "id": "adilet-cedaw",
+      "cat": "intl",
+      "short": "ИПС «Әділет»",
+      "title": "Закон РК от 29 июня 1998 г. № 248 «О присоединении Республики Казахстан к Конвенции о ликвидации всех форм дискриминации в отношении женщин»",
+      "org": "ИПС «Әділет», Министерство юстиции РК",
+      "year": "1998",
+      "type": "Международный договор (акт о присоединении)",
+      "url": "https://adilet.zan.kz/rus/docs/Z980000248_"
+    },
+    {
+      "id": "bns-population",
+      "cat": "stat",
+      "short": "БНС АСПиР РК",
+      "title": "Численность населения Республики Казахстан (на 1 декабря 2025 г.)",
+      "org": "Бюро национальной статистики АСПиР РК",
+      "year": "2025",
+      "type": "Официальная статистика",
+      "url": "https://stat.gov.kz/ru/industries/social-statistics/demography/publications/475780/"
+    },
+    {
+      "id": "bns-wages",
+      "cat": "stat",
+      "short": "БНС АСПиР РК",
+      "title": "Заработная плата и условия труда",
+      "org": "Бюро национальной статистики АСПиР РК",
+      "year": "2024",
+      "type": "Официальная статистика",
+      "url": "https://stat.gov.kz/ru/industries/labor-and-income/stat-wags/"
+    },
+    {
+      "id": "genderstat-leaders",
+      "cat": "stat",
+      "short": "gender.stat.gov.kz",
+      "title": "Доля женщин, занимающих руководящие должности",
+      "org": "Бюро национальной статистики, портал гендерной статистики",
+      "year": "2024",
+      "type": "Официальная статистика",
+      "url": "https://gender.stat.gov.kz/page/frontend/detail?id=73&slug=-58&cat_id=9&lang=ru"
+    },
+    {
+      "id": "genderstat-maslikhat",
+      "cat": "stat",
+      "short": "gender.stat.gov.kz",
+      "title": "Доля женщин в выборных органах (маслихаты)",
+      "org": "Бюро национальной статистики, портал гендерной статистики",
+      "year": "2024",
+      "type": "Официальная статистика",
+      "url": "https://gender.stat.gov.kz/page/frontend/detail?id=69&slug=-56&cat_id=9&lang=ru"
+    },
+    {
+      "id": "liter-leaders",
+      "cat": "media",
+      "short": "Liter.kz, 2025",
+      "title": "Сколько женщин занимает руководящие должности в Казахстане",
+      "org": "Liter.kz (со ссылкой на БНС)",
+      "year": "2025",
+      "type": "Статья СМИ",
+      "url": "https://liter.kz/skolko-zhenshchin-zanimaet-rukovodiashchie-dolzhnosti-v-kazakhstane-1741259195/"
+    },
+    {
+      "id": "election-kurultai",
+      "cat": "stat",
+      "short": "ЦИК РК, 2026",
+      "title": "Установлены итоги выборов депутатов Курултая Республики Казахстан",
+      "org": "Центральная избирательная комиссия РК",
+      "year": "2026",
+      "type": "Официальное сообщение",
+      "url": "https://www.election.gov.kz/rus/news/releases/index.php?ID=10586"
+    },
+    {
+      "id": "inform-kurultai",
+      "cat": "media",
+      "short": "Kazinform, 2026",
+      "title": "Женщины заняли треть мест в Курултае Казахстана",
+      "org": "МИА «Казинформ»",
+      "year": "2026",
+      "type": "Статья информагентства",
+      "url": "https://www.inform.kz/ru/zhenshini-zanyali-tret-mest-v-kurultae-kazahstana-f1ca35ae"
+    },
+    {
+      "id": "factcheck-parliament",
+      "cat": "media",
+      "short": "Factcheck.kz",
+      "title": "Почему в Парламенте Казахстана становится меньше женщин",
+      "org": "Factcheck.kz",
+      "year": null,
+      "type": "Аналитическая статья",
+      "url": "https://factcheck.kz/gender/pochemu-v-parlamente-kazahstana-stanovitsya-menshe-zhenschin/"
+    }
+  ]
+}

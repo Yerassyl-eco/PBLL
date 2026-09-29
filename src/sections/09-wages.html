@@ -1,0 +1,57 @@
+<section class="room room--light wages" id="wages" data-room="Зал V" data-room-title="Заработная плата · 2024" aria-labelledby="wages-title">
+  <div class="wrap wages__grid">
+    <header class="wages__head" data-reveal>
+      <p class="eyebrow">Зал V · Труд</p>
+      <h2 class="h3" id="wages-title">Среднемесячная номинальная заработная плата, 2024&nbsp;год</h2>
+      <p class="muted">Тенге в&nbsp;месяц, по&nbsp;всем работникам.</p>
+    </header>
+
+    <figure class="chart chart--wages" data-reveal>
+      <div class="bars" data-chart style="--max:500000">
+        <div class="bars__axis" aria-hidden="true">
+          <span style="--v:0">0</span><span style="--v:100000">100&nbsp;тыс.</span><span style="--v:200000">200&nbsp;тыс.</span><span style="--v:300000">300&nbsp;тыс.</span><span style="--v:400000">400&nbsp;тыс.</span><span style="--v:500000">500&nbsp;тыс.</span>
+        </div>
+        <div class="bars__row" data-tip="Мужчины · 468 914 ₸ в месяц · 2024">
+          <span class="bars__label"><i class="key key--a" aria-hidden="true"></i>Мужчины</span>
+          <span class="bars__track"><span class="bars__bar bars__bar--a" style="--v:468914"></span></span>
+          <span class="bars__val">468&nbsp;914&nbsp;₸</span>
+        </div>
+        <div class="bars__row" data-tip="Женщины · 344 496 ₸ в месяц · 2024">
+          <span class="bars__label"><i class="key key--b" aria-hidden="true"></i>Женщины</span>
+          <span class="bars__track"><span class="bars__bar bars__bar--b" style="--v:344496"></span></span>
+          <span class="bars__val">344&nbsp;496&nbsp;₸</span>
+        </div>
+      </div>
+      <figcaption>
+        <p class="calc"><span>344&nbsp;496 ÷ 468&nbsp;914</span> <span>=</span> <b>73,5&nbsp;%</b></p>
+        <p class="calc__note">Отношение средних зарплат, 2024&nbsp;г. Расчёт по&nbsp;данным Бюро национальной статистики.</p>
+        {{src:bns-wages}}
+        <details class="tableview">
+          <summary>Показать данные таблицей</summary>
+          <table>
+            <caption class="sr-only">Среднемесячная номинальная заработная плата по полу, 2024 год</caption>
+            <thead><tr><th scope="col">Группа</th><th scope="col">Тенге в месяц</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Мужчины</th><td>468&nbsp;914</td></tr>
+              <tr><th scope="row">Женщины</th><td>344&nbsp;496</td></tr>
+            </tbody>
+          </table>
+        </details>
+      </figcaption>
+    </figure>
+
+    <div class="wages__read" data-reveal>
+      <p class="wages__lede">Средняя зарплата не&nbsp;показывает одну причину разницы.</p>
+      <p>Это среднее по&nbsp;всем работникам. На&nbsp;него одновременно влияют:</p>
+      <ul class="factors">
+        <li>отрасль</li>
+        <li>профессия</li>
+        <li>должность</li>
+        <li>продолжительность рабочего времени</li>
+        <li>образование</li>
+        <li>стаж, регион и&nbsp;другие факторы</li>
+      </ul>
+      <p class="muted">Чтобы сравнивать зарплату за&nbsp;одинаковую работу, нужны данные в&nbsp;разрезе этих факторов. Средний показатель такого сравнения не&nbsp;даёт.</p>
+    </div>
+  </div>
+</section>

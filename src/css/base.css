@@ -1,0 +1,98 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-text);
+  font-size: var(--t-base);
+  line-height: 1.6;
+  font-feature-settings: "kern", "liga";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img, svg { display: block; max-width: 100%; }
+p, h1, h2, h3, h4, ol, ul, dl, dd, figure, blockquote { margin: 0; }
+ol, ul { padding: 0; list-style: none; }
+button { font: inherit; color: inherit; }
+abbr[title] { text-decoration: underline dotted 1px; text-underline-offset: .2em; cursor: help; }
+
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+.room--ink :focus-visible, .room--steppe :focus-visible, .hero :focus-visible, .foot :focus-visible { outline-color: var(--gold); }
+
+.sr-only {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip {
+  position: fixed; left: 1rem; top: calc(env(safe-area-inset-top, 0px) + .5rem); z-index: 100;
+  padding: .6rem 1rem; background: var(--ink); color: var(--paper);
+  font-size: var(--t-sm); transform: translateY(-200%);
+}
+.skip:focus { transform: none; }
+
+/* Сетка и залы */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.room { padding-block: var(--room-pad); position: relative; }
+.room--paper { background: var(--paper); color: var(--ink); }
+.room--light { background: var(--paper-hi); color: var(--ink); }
+.room--sand { background: var(--sand); color: var(--ink); }
+.room--ink { background: var(--ink); color: var(--on-dark); }
+.room--steppe { background: var(--steppe); color: var(--on-dark); }
+
+/* Типографика */
+.eyebrow {
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold-ink);
+  margin-bottom: 1.25rem;
+}
+.room--ink .eyebrow, .room--steppe .eyebrow { color: var(--gold); }
+
+.h2, .h3, .h4, .coda__q h3 {
+  font-family: var(--f-display);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -.01em;
+  text-wrap: balance;
+}
+.h2 { font-size: var(--t-2xl); }
+.h3 { font-size: var(--t-xl); line-height: 1.1; }
+.h4 { font-size: var(--t-lg); line-height: 1.15; }
+
+.lead {
+  font-size: var(--t-md);
+  line-height: 1.5;
+  max-width: var(--measure);
+  text-wrap: pretty;
+}
+p { text-wrap: pretty; }
+.muted { color: var(--ink-soft); font-size: var(--t-sm); max-width: var(--measure); }
+.room--ink .muted, .room--steppe .muted { color: var(--on-dark-soft); }
+.note { font-size: var(--t-sm); color: var(--ink-soft); max-width: 28em; }
+.note a { color: var(--ink); }
